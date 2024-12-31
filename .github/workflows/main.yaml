@@ -1,0 +1,58 @@
+name: linkding CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  unit_tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - name: Install Node dependencies
+        run: npm ci
+      - name: Setup Python environment
+        run: |
+          pip install -r requirements.txt -r requirements.dev.txt
+          mkdir data
+      - name: Run tests
+        run: python manage.py test bookmarks.tests
+  e2e_tests:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - name: Install Node dependencies
+        run: npm ci
+      - name: Setup Python environment
+        run: |
+          pip install -r requirements.txt -r requirements.dev.txt
+          playwright install chromium
+          mkdir data
+      - name: Run build
+        run: |
+          npm run build
+          python manage.py collectstatic
+      - name: Run tests
+        run: python manage.py test bookmarks.e2e --pattern="e2e_test_*.py"
