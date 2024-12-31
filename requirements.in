@@ -1,0 +1,16 @@
+beautifulsoup4
+bleach
+bleach-allowlist
+Django
+django-registration
+django-widget-tweaks
+djangorestframework
+huey
+Markdown
+mozilla-django-oidc
+psycopg2-binary
+python-dateutil
+requests
+supervisor
+uWSGI
+waybackpy

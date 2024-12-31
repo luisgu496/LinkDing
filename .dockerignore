@@ -1,0 +1,22 @@
+# Ignore everything
+*
+
+# Include files required for build or at runtime
+!/bookmarks
+!/siteroot
+
+!/bootstrap.sh
+!/LICENSE.txt
+!/manage.py
+!/package.json
+!/package-lock.json
+!/postcss.config.js
+!/requirements.dev.txt
+!/requirements.txt
+!/rollup.config.mjs
+!/supervisord.conf
+!/uwsgi.ini
+!/version.txt
+
+ # Remove dev settings
+/siteroot/settings/dev.py

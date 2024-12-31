@@ -1,0 +1,7 @@
+black
+coverage
+django-debug-toolbar
+playwright
+pytest
+pytest-django
+pytest-xdist
